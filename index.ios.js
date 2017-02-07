@@ -1,27 +1,40 @@
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View, ListView } from 'react-native';
-import Firebase from 'firebase';
+import { base, firebaseAuth } from './src/config/firebaseApp.js';
+import { SyncStates } from './src/constants/app.js';
 
 export default class SessionNative extends Component {
   constructor(props) {
     super(props);
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows([
-        'John', 'Joel', 'James', 'Jimmy', 'Jackson', 'Jillian', 'Julie', 'Devin'
-      ])
+      dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
+      que: [],
     };
   }
 
+  componentDidMount(){
+    base.fetch('que', { context: this, asArray: true, then(data) {
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(data),
+        que: data,
+      });
+    }});
+  }
+
   render() {
+    const queNode = this.state.que.map((item) => (
+      <Text>{item.title}</Text>
+    ));
+
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
           Hello World
         </Text>
+        {queNode}
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={(rowData) => <Text>{rowData}</Text>}
+          renderRow={(rowData) => <Text>{rowData.title}</Text>}
         />
       </View>
     );
