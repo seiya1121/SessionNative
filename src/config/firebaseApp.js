@@ -1,6 +1,6 @@
-import firebase from 'firebase';
+import * as firebase from 'firebase';
 import { FIREBASE_CONFIG } from './apiKey.js';
-import Rebase from 're-base';
+import * as Rebase from 're-base';
 
 const ref = 'session-seiya';
 export const firebaseApp = firebase.initializeApp(FIREBASE_CONFIG);
