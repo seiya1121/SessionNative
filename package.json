@@ -15,6 +15,7 @@
     "react-native-elements": "^0.9.5",
     "react-native-scrollable-tab-view": "^0.7.2",
     "react-native-vector-icons": "^4.0.0",
+    "react-native-youtube": "git+https://github.com/georgiana-gligor/react-native-youtube.git",
     "react-redux": "^5.0.2",
     "redux": "^3.6.0"
   },

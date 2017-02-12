@@ -13,7 +13,9 @@ class Que extends ReactBaseComponent {
 		const queNode = app.que.map((video, i) => (
 			<ListItem
 				key={i}
+				hideChevron
 				title={video.title}
+				subtitle={`added by ${video.user.name}`}
 				avatar={{uri: video.thumbnailUrl}}
 				onPress={() => appActions.postPlayingVideo(video)}
 			/>
