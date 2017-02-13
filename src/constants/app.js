@@ -46,7 +46,7 @@ export const InitialState = {
   searchedText: '',
   selectedPlaylist: '',
   volume: 0.8,
-  played: 0,
+  currentTime: 0,
   loaded: 0,
   duration: 0,
   seeking: false,
@@ -79,7 +79,8 @@ export const SET_PLAYLISTS = 'SET_PLAYLISTS';
 export const UPDATE_SYNC_STATE = 'FETCH_SYNC_STATE';
 export const UPDATE_QUE = 'UPDATE_QUE';
 export const UPDATE_COMMENTS = 'UPDATE_COMMENTS';
-export const UPDATE_PLAYED = 'UPDATE_PLAYED';
+export const UPDATE_CURRENT_TIME = 'UPDATE_CURRENT_TIME';
 export const UPDATE_PLAYING = 'UPDATE_PLAYING';
 export const UPDATE_PLAYING_VIDEO = 'UPDATE_PLAYING_VIDEO';
 export const UPDATE_USERS = 'UPDATE_USERS';
+export const CHANGE_PLAYER_STATE = 'CHANGE_PLAYER_STATE';

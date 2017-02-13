@@ -53,10 +53,11 @@ export const app = (state = App.InitialState, action) => {
       return newState({ seeking: false, startTime: action.played });
     case App.CHANGE_PLAYED:
       return newState({ played: action.played, seeking: false });
+		case App.CHANGE_PLAYER_STATE:
+			return newState({ state })
     case App.PROGRESS:
-      const { played, loaded } = action.state;
-      const playingStatus = (loaded) ? { played, loaded } : { played };
-      return !state.seeking ? newState(playingStatus) : state;
+      const { currentTime, duration } = action;
+      return newState({ currentTime, duration });
     case App.SET_SEARCH_RESULT:
       const { result, resultType } = action;
       const tempResult = (resultType === 'playlistVideo') ?
@@ -68,8 +69,8 @@ export const app = (state = App.InitialState, action) => {
       return newState({ que: action.que });
     case App.UPDATE_COMMENTS:
       return newState({ comments: action.comments });
-    case App.UPDATE_PLAYED:
-      return newState({ played: action.played });
+    case App.UPDATE_CURRENT_TIME:
+      return newState({ currentTime: action.currentTime });
     case App.UPDATE_PLAYING:
       return newState({ playing: action.playing });
     case App.UPDATE_PLAYING_VIDEO:

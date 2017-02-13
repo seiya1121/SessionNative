@@ -32,7 +32,7 @@ class App extends ReactBaseComponent {
 	}
 
 	componentDidMount(){
-		const { appActions } = this.props;
+		const { app, appActions } = this.props;
 		base.listenTo('comments', { context: this, asArray: true, then(data) {
 			appActions.updateComments(data);
 		}});
@@ -40,7 +40,9 @@ class App extends ReactBaseComponent {
 			appActions.updateQue(data);
 		}});
 		base.listenTo('startTime', { context: this, asArray: false, then(data) {
-			appActions.updatePlayed(data);
+			const currentTime = (data === 0) ? 0 : app.duration / data;
+			appActions.updateCurrentTime(currentTime);
+			this.player.seekTo(currentTime);
 		}});
 		base.listenTo('playing', { context: this, asArray: false, then(data) {
 			appActions.updatePlaying(data);
@@ -55,27 +57,24 @@ class App extends ReactBaseComponent {
 
 	render() {
 		const { app, appActions } = this.props;
-
 		return (
 			<View style={{flex: 1, marginTop: 20 }}>
-				<YouTube
-					ref="youtubePlayer"
-					videoId={app.playingVideo.id} // The YouTube video ID
-					play={app.playing}           // control playback of video with true/false
-					hidden={false}        // control visiblity of the entire view
-					playsInline={true}    // control whether the video should play inline
-					loop={false}          // control whether the video should loop when ended
-					onReady={() => appActions.play()}
-					onChangeState={(e)=>{this.setState({status: e.state})}}
-					onError={(e)=>{this.setState({error: e.error})}}
-					onProgress={(e)=>{this.setState({currentTime: e.currentTime, duration: e.duration})}}
-
+				<YouTube style={{flex: 2}}
+					ref={(player) => { this.player = player; }}
+					videoId={app.playingVideo.id}
+					play={app.playing}
+					hidden={false}
+					playsInline={true}
+					loop={false}
+					onReady={appActions.play}
+					onChangeState={appActions.changePlayerState}
+          onProgress={(e) => { appActions.progress(e.currentTime, e.duration) }}
 					style={{alignSelf: 'stretch', height: 200, backgroundColor: 'black', marginVertical: 10}}
 				/>
 				<TouchableOpacity onPress={()=>{this.setState((s) => {return {isPlaying: !s.isPlaying};} )}}>
-				  <Text style={[styles.welcome, {color: 'blue'}]}></Text>
+				  <Text style={[styles.welcome, {color: 'blue'}]}>{app.currentTime}</Text>
 				</TouchableOpacity>
-			  <ScrollTab app={app} appActions={appActions} />
+			  <ScrollTab style={{flex: 3}} app={app} appActions={appActions} />
 			</View>
 		);
 	}

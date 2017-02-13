@@ -65,13 +65,14 @@ export const changeVolume = (volume) => ({ type: App.CHANGE_VOLUME, volume });
 export const setSearchResult = (resultType, result) => ({
   type: App.SET_SEARCH_RESULT, result, resultType
 });
+export const changePlayerState = (event) => ({ type: App.CHANGE_PLAYER_STATE, event });
 export const seekDown = () => ({ type: App.SEEK_DOWN });
 export const seekUp = (played) => ({ type: App.SEEK_UP, played });
-export const progress = (state) => ({ type: App.PROGRESS, state });
+export const progress = (currentTime, duration) => ({ type: App.PROGRESS, currentTime, duration });
 export const updateSyncState = (key, value) => ({ type: App.UPDATE_SYNC_STATE, key, value });
 export const updateQue = (que) => ({ type: App.UPDATE_QUE, que });
 export const updateComments = (comments) => ({ type: App.UPDATE_COMMENTS, comments });
-export const updatePlayed = (played) => ({ type: App.UPDATE_PLAYED, played });
+export const updateCurrentTime = (currentTime) => ({ type: App.UPDATE_CURRENT_TIME, currentTime });
 export const updatePlaying = (playing) => ({ type: App.UPDATE_PLAYING, playing });
 export const updatePlayingVideo = (video) => ({ type: App.UPDATE_PLAYING_VIDEO, video });
 export const updateUsers = (users) => ({ type: App.UPDATE_USERS, users });
