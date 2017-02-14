@@ -40,7 +40,11 @@ class App extends ReactBaseComponent {
 			appActions.updateQue(data);
 		}});
 		base.listenTo('startTime', { context: this, asArray: false, then(data) {
-			const currentTime = (data === 0) ? 0 : app.duration / data;
+			console.log(data);
+			console.log(data === 0);
+			console.log(app.duration);
+			const currentTime = (data === 0) ? 0 : (app.duration / data);
+			console.log(currentTime);
 			appActions.updateCurrentTime(currentTime);
 			this.player.seekTo(currentTime);
 		}});

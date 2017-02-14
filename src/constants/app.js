@@ -50,11 +50,6 @@ export const InitialState = {
   loaded: 0,
   duration: 0,
   seeking: false,
-  isSearchActive: false,
-  isCommentActive: false,
-  isQueListActive: false,
-  isPlaylistActive: false,
-  isLoadedSyncState: false,
 };
 
 export const CHANGE_VALUE_WITH_KEY = 'CHANGE_VALUE_WITH_KEY';

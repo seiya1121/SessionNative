@@ -25,14 +25,26 @@ class Comments extends ReactBaseComponent {
 
   render() {
     const {app, appActions} = this.props;
-    const commentsNode = app.comments.slice(app.comments.length - 9, app.comments.length).map((comment, i) => (
-			<ListItem
+    const comments = app.comments.slice(app.comments.length - 9, app.comments.length);
+    const commentWithIcon = (comment, i) => (
+    	<ListItem
 				key={i}
 				hideChevron
 				roundAvatar
 				title={comment.content}
 				avatar={{uri: comment.user.photoURL}}
 			/>
+		);
+    const commentWithoutIcon = (comment, i) => (
+			<ListItem
+				key={i}
+				hideChevron
+				roundAvatar
+				title={comment.content}
+			/>
+		);
+    const commentsNode = comments.map((c, i) => (
+    	(c.user.photoURL === '') ? commentWithoutIcon(c, i) : commentWithIcon(c, i)
 		));
 
     return(
