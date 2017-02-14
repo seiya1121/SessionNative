@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import ReactBaseComponent from './reactBaseComponent';
 import { CommandType, CommentType, commentObj } from '../constants/app';
 import { List, ListItem, SearchBar } from 'react-native-elements'
+import Avatar from '../images/avatar.png'
 
 class Comments extends ReactBaseComponent {
   constructor(props) {
@@ -26,22 +27,14 @@ class Comments extends ReactBaseComponent {
   render() {
     const {app, appActions} = this.props;
     const comments = app.comments.slice(app.comments.length - 9, app.comments.length);
-    const commentWithIcon = (comment, i) => (
-    	<ListItem
-				key={i}
-				hideChevron
-				roundAvatar
-				title={comment.content}
-				avatar={{uri: comment.user.photoURL}}
-			/>
-		);
+    const commentWithIcon = (comment, i) => {
+    	const avatar = (comment.user.isAnonymous) ? Avatar : {uri: comment.user.photoURL}
+			return (
+				<ListItem key={i} hideChevron roundAvatar title={comment.content} avatar={avatar}/>
+			);
+		}
     const commentWithoutIcon = (comment, i) => (
-			<ListItem
-				key={i}
-				hideChevron
-				roundAvatar
-				title={comment.content}
-			/>
+			<ListItem key={i} hideChevron roundAvatar title={comment.content} />
 		);
     const commentsNode = comments.map((c, i) => (
     	(c.user.photoURL === '') ? commentWithoutIcon(c, i) : commentWithIcon(c, i)
