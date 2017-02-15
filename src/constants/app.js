@@ -61,7 +61,6 @@ export const PUSH_VIDEO = 'PUSH_VIDEO';
 export const REMOVE_VIDEO = 'REMOVE_VIDEO';
 export const PLAY_PAUSE = 'PLAY_PAUSE';
 export const CHANGE_VOLUME = 'CHANGE_VOLUME';
-export const SEEK_DOWN = 'SEEK_DOWN';
 export const SEEK_UP = 'SEEK_UP';
 export const CHANGE_PLAYED = 'CHANGE_PLAYED';
 export const PLAY = 'PLAY';
