@@ -67,7 +67,6 @@ export const setSearchResult = (resultType, result) => ({
 });
 export const changePlayerState = (event) => ({ type: App.CHANGE_PLAYER_STATE, event });
 export const seekDown = () => ({ type: App.SEEK_DOWN });
-export const seekUp = (played) => ({ type: App.SEEK_UP, played });
 export const progress = (currentTime, duration) => ({ type: App.PROGRESS, currentTime, duration });
 export const updateSyncState = (key, value) => ({ type: App.UPDATE_SYNC_STATE, key, value });
 export const updateQue = (que) => ({ type: App.UPDATE_QUE, que });

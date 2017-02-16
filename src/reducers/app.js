@@ -47,8 +47,6 @@ export const app = (state = App.InitialState, action) => {
       return newState({ commentText: '', isCommentActive: false });
     case App.CHANGE_VOLUME:
       return newState({ volume: parseFloat(action.volume) });
-    case App.SEEK_UP:
-      return newState({ seeking: false, startTime: action.played });
     case App.CHANGE_PLAYED:
       return newState({ played: action.played, seeking: false });
 		case App.CHANGE_PLAYER_STATE:
