@@ -75,9 +75,6 @@ class App extends ReactBaseComponent {
           onProgress={(e) => { appActions.progress(e.currentTime, e.duration) }}
 					style={{alignSelf: 'stretch', height: 200, backgroundColor: 'black', marginVertical: 10}}
 				/>
-				<TouchableOpacity onPress={()=>{this.setState((s) => {return {isPlaying: !s.isPlaying};} )}}>
-				  <Text style={[styles.welcome, {color: 'blue'}]}>{app.currentTime}</Text>
-				</TouchableOpacity>
 			  <ScrollTab style={{flex: 3}} app={app} appActions={appActions} />
 			</View>
 		);
