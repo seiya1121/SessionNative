@@ -20,6 +20,7 @@ export const SyncStates = [
   { state: 'playingVideo', asArray: false },
   { state: 'playing', asArray: false },
   { state: 'startTime', asArray: false },
+		{ state: 'currentTime', asArray: false },
 ];
 
 export const CommandType = { giphy: '/giphy ' };
